@@ -4,7 +4,6 @@
  * @author  Alzn
  * @date    2022-02-25
  **************************************************************/
-
 #pragma once
 
 #include <condition_variable>
@@ -75,6 +74,7 @@ public:
 
 class MessageBase {
 public:
+  virtual ~MessageBase() = default;
   virtual void managerHandler(void) = 0;
   virtual void handler(void) = 0;
   virtual void init(void) = 0;
@@ -90,6 +90,8 @@ private:
   void managerHandler(void);
   void init(void);
   void wait(void);
+public:
+  virtual ~Sync() = default;
 };
 
 class Async : public MessageBase {
@@ -97,6 +99,8 @@ private:
   void managerHandler(void);
   void init(void);
   void wait(void);
+public:
+  virtual ~Async() = default;
 };
 
 class Manager {
